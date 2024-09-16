@@ -1,0 +1,87 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+#define MAX_SIZE 100
+
+int stack[MAX_SIZE];
+int top=-1;
+
+void push(int val) 
+{
+    if (top == MAX_SIZE - 1) {
+        printf("STACK OVERFLOW\n");
+    } 
+	else 
+	{
+        top++;
+        stack[top] = val;
+    }
+}
+
+void pop() {
+    if (top == -1) 
+	{
+        printf("STACK UNDERFLOW\n");
+    } 
+	else 
+	{
+        printf("Popped element: %d\n", stack[top]);
+        top--;
+    }
+}
+
+
+bool check_palindrome()
+{
+	for (int i = 0; i <= top/2; i++)
+	{
+        if (stack[i] != stack[top-i]) 
+		{
+          return false;
+        }
+    }
+          return true;
+	
+}
+
+
+void display() 
+{
+    if (top == -1) 
+	{
+        printf("Stack is empty\n");
+    } 
+	else 
+	{
+        for (int i = 0; i <= top; i++) 
+		{
+            printf("%d ", stack[i]);
+        }
+        printf("\n");
+    }
+}
+
+
+int main()
+{
+	printf("Name: Shivani \nUID:23BAI70295\nClass :AML5-A\n");
+	printf("The stack is:  ");
+	push(3);
+	push(4);
+	push(5);
+	push(6);
+	push(7);
+	push(8);
+	display();
+	pop();
+	display();
+	if (check_palindrome()) 
+	{
+        printf("The stack is a palindrome.\n");
+    }
+	 else 
+	{
+        printf("The stack is not a palindrome.\n");
+    }
+	return 0;
+}
