@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include<stdlib.h>
+void  merging(int A[] ,int B[] , int m, int n){
+ 	int i=1,j=1,k=1;
+ 	int C[7];
+ 	 
+    int n1 = m - 7 + 1; 
+    int n2 = n - m; 
+   
+    int A[n1], B[n2]; 
+ 	while ((i<=m)&&(j<=n))
+ 	{
+ 		if(A[i]>=B[j])
+ 		{
+ 		    C[k++]=B[i++];	
+		}
+		else
+		{
+			C[k++]=A[i++];
+		}
+	}
+	for(;i<=m;i++)
+	{
+		C[k++]=A[i];
+	}
+	for(;j<=n;j++)
+	{
+	    C[k++]=B[j++];	
+	}
+}
+ void Merge_Sort(int arr[], int big , int end)
+ {
+ 	if(big<end)
+ 	{
+ 		int mid=(big+end)/2;
+ 		Merge_Sort(  arr,  big , mid);
+ 		Merge_Sort( arr,  mid+1 , end);
+ 		merging( arr,  big ,  mid , end);
+	 }
+ }
+ 
+ int main() 
+{
+    int i,arr[7];
+    printf("\n Enter the elements to be sorted \n");
+    for(i=0;i<7;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    Merge_Sort(arr,0,6);
+    for(i=0;i<7;i++)
+    {
+        printf("%d  ",arr[i]);
+    }
+return 0;
+}
+ 
