@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <string.h>
+
+
+void replaceString(char* s, char* s1, char* s2)
+{
+	char ans[100];
+	int index = 0;   //index of ans str
+	int i;
+	
+	for ( i = 0; i < strlen(s); i++) {   //traverses the whole string
+
+		int k = 0;   //iterator for pattern string
+
+		if (s[i] == s1[k] && i + strlen(s1) <= strlen(s)) {  // start of the pattern str found
+
+			int j;    //iterator to check for pattern in mian str
+
+			for (j = i; j < i + strlen(s1); j++) {   //checks pattern str in main str
+
+				if (s[j] != s1[k]) {   //if not same break
+					break;
+				}
+				else {
+					k = k + 1;   //continue to the end of pattern str
+				}
+			}
+
+			
+			if (j == i + strlen(s1)) {    //pattern str found
+				int l;     //iterator for replace str
+				for (l = 0; l < strlen(s2); l++) {
+					ans[index++] = s2[l];
+				}
+				i = j - 1;   //set i next to the replaced str
+			}
+			
+			else {   //pattern str not found
+				ans[index++] = s[i];
+			}
+		}
+
+		else {   //normally add the main str to ans
+			ans[index++] = s[i];
+		}
+	}
+
+	printf("%s", ans);
+}
+
+void main(){
+	printf("Name: Shivani\nUID: 23BAI70295\nSection: 23AML-5(A)\n\n");
+	char S[50], S1[50], S2[50];
+	printf("Enter the main string: ");
+	gets(S);
+	printf("Enter the pattern string: ");
+	gets(S1);
+	printf("Enter the replaced string: ");
+	gets(S2);
+	replaceString(S, S1, S2);
+}
